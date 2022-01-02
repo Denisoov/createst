@@ -1,22 +1,23 @@
-<script>
+<script lang="ts">
+import Vue from 'vue'
 
 import IconHome from '@/components/icons/IconHome.vue'
 import IconQuestion from '@/components/icons/IconQuestion.vue'
 import IconUser from '@/components/icons/IconUser.vue'
 
-export default {
+export default Vue.extend({
     components: {
         IconHome,
         IconQuestion,
-        IconUser
+        IconUser,
     }
-}
+})
 </script>
 
 <template>
     <div class="the-header">
         <div class="header-bar">
-            <icon-home></icon-home>
+            <div></div>
             <ul class="menu">
                 <li>
                     <icon-home />
