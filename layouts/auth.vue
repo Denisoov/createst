@@ -14,10 +14,10 @@ export default Vue.extend({
   <v-app>
     <div class="layout">
       <div class="wrapper-form">
-        <div class="side cover">
-
+        <div class="side">
+            <img src="@/assets/images/logo.png" alt="creaTest">
         </div>
-        <div class="side form">
+        <div class="side">
           <component :is="'LoginForm'"></component>
         </div>
       </div>
@@ -54,17 +54,9 @@ export default Vue.extend({
     .side {
       width: 50%;
       height: 80vh;
-    }
-    .cover {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .form {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
     }
   }
 </style>
