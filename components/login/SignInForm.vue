@@ -1,0 +1,59 @@
+<template>
+    <div class="form">
+        <h2 class="form__title" >Вход в систему</h2>
+        <v-text-field
+            class="input__text"
+            placeholder="Логин"
+        ></v-text-field>
+        <v-text-field
+             placeholder="Пароль"
+             type="password"
+        ></v-text-field>
+        <div class="content-url--registration">
+            У меня
+            <a href="">нет аккаунта</a>
+        </div>
+        <button class="button-auth"> 
+            Войти
+        </button>
+    </div>
+</template>
+<style lang="scss">
+    .form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      input {
+          width: 300px !important;
+          font-family: 'Montserrat-Medium', 'sans-serif';
+      }
+      // задаем шрифт для всех блоков кроме h2
+      & > *:not(.form__title) {
+          font-family: 'Montserrat-Medium', 'sans-serif';
+      }
+    }
+    .form__title {
+        margin-bottom: 25px;
+    }
+    .v-application .primary--text {
+        color: rgba(23, 27, 148, 0.42) !important;
+        caret-color: rgba(23, 27, 148, 0.42) !important;
+    }
+    .content-url--registration {
+        text-align: center;
+        margin: 5px 0 29px 0;
+        font-size: 14px;
+
+        a {
+            color: rgba(23, 27, 148);
+        }
+    }
+    .button-auth {
+        background: #2529B4;
+        color: #fff;
+        padding: 16px 90px 16px 90px;
+        border-radius: 5px;
+    }
+</style>

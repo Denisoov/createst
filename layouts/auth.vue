@@ -2,10 +2,14 @@
 import Vue from 'vue'
 
 import LoginForm from '@/components/login/LoginForm.vue'
+import SignInForm from '@/components/login/SignInForm.vue'
+
+import { CurrentForm } from '~/types/store/auth'
 
 export default Vue.extend({
   components: {
-    LoginForm
+    LoginForm,
+    SignInForm
   }
 })
 </script>
@@ -18,7 +22,10 @@ export default Vue.extend({
             <img src="@/assets/images/logo.png" alt="creaTest">
         </div>
         <div class="side">
-          <component :is="'LoginForm'"></component>
+          <component 
+            :is="'LoginForm'"
+            v-on="$listeners"
+          ></component>
         </div>
       </div>
     </div>
