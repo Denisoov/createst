@@ -1,9 +1,10 @@
-import { ActionTree, MutationTree } from 'vuex'
+import { ActionTree, MutationTree, GetterTree } from 'vuex'
 
 import { 
     CurrentForm,
     AuthState
 } from '@/types/store/auth'
+import { FullState } from '~/types'
 
 const defaultState: AuthState = {
   currentForm: CurrentForm.SIGN_IN,
@@ -30,8 +31,14 @@ export const mutations: MutationTree<AuthState> = {
         state.currentForm = currentForm
     }
 }
-export const actions: ActionTree<AuthState> = {
+export const actions: ActionTree<AuthState, FullState> = {
     changeCurrentForm({ commit }, formName: CurrentForm) {
         commit('SET_CURRENT_FORM', formName)
     }
+}  
+
+export const getters: GetterTree<AuthState, FullState> = {
+  currentForm: ({ currentForm }) => {
+    return currentForm
+  }
 }  

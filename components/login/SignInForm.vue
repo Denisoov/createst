@@ -1,3 +1,17 @@
+<script lang="ts">
+import Vue from 'vue'
+
+import { CurrentForm } from '@/types/store/auth' 
+
+export default Vue.extend({
+    methods: {
+        goToLogIn(): void {
+            this.$emit('changeCurrentForm', CurrentForm.LOG_IN)
+        }
+    }
+})
+</script>
+
 <template>
     <div class="form">
         <h2 class="form__title" >Вход в систему</h2>
@@ -11,7 +25,7 @@
         ></v-text-field>
         <div class="content-url--registration">
             У меня
-            <a href="">нет аккаунта</a>
+            <a @click="goToLogIn">нет аккаунта</a>
         </div>
         <button class="button-auth"> 
             Войти
@@ -19,15 +33,14 @@
     </div>
 </template>
 <style lang="scss">
+     @import '~@/assets/styles/mixins.scss';
+
     .form {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+        @include flex-mix(flex);
+        flex-direction: column;
 
       input {
           width: 300px !important;
-          font-family: 'Montserrat-Medium', 'sans-serif';
       }
       // задаем шрифт для всех блоков кроме h2
       & > *:not(.form__title) {

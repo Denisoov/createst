@@ -1,12 +1,75 @@
 <script lang="ts">
 import Vue from 'vue'
 
+import LoginForm from '@/components/login/LoginForm.vue'
+import SignInForm from '@/components/login/SignInForm.vue'
+
+import { CurrentForm } from '@/types/store/auth'
+
 export default Vue.extend({
-  layout: 'auth'
+  layout: 'auth',
+  components: {
+    LoginForm,
+    SignInForm
+  },
+  computed: {
+    currentForm(): CurrentForm {
+      return this.$store.getters['auth/currentForm']
+    },
+  },
+  methods: {
+    changeCurrentForm(nextForm: CurrentForm): void {
+      this.$store.dispatch('auth/changeCurrentForm', nextForm)
+    }
+  }
 })
 </script>
+
 <template>
-  <div>
-    Шаблон
+  <div class="wrapper-form">
+    <div class="side">
+        <img src="@/assets/images/logo.png" alt="creaTest">
+    </div>
+    <div class="side">
+      <transition name="fade" mode="out-in">
+        <component 
+        :is="currentForm"
+        @changeCurrentForm="changeCurrentForm"
+        ></component>
+      </transition>
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+  @import '~@/assets/styles/mixins.scss';
+
+  .wrapper-form {
+      @include flex-mix(flex);
+      min-height: 80vh;
+      min-width: 1200px;
+      box-shadow: 0 5px 70px rgb(0 0 0 / 8%);
+      border-radius: 30px;
+      background: linear-gradient(
+        270deg, 
+        transparent 50%, 
+        #2529B4 50%, 
+        #2529B4);
+
+      .side {
+        width: 50%;
+        height: 80vh;
+        @include flex-mix(flex);
+      }
+    }
+  .fade-enter-active {
+    transition: all 0.2s;
+  }
+  .fade-enter {
+    opacity: 0;
+  }
+  .fade-leave-active {
+    opacity: 0;
+    transition: all 0.2s;
+  }
+</style>

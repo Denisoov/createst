@@ -1,8 +1,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
-
 import { max, required } from '@/helpers/vee-validate-rules'
+
+import { CurrentForm } from '@/types/store/auth' 
 
 extend('required', max)
 extend('required', required)
@@ -26,7 +27,7 @@ export default Vue.extend({
     },
     methods: {
         goToSignIn(): void {
-            console.log('вызов есть')
+            this.$emit('changeCurrentForm', CurrentForm.SIGN_IN)
         }
     }
 })
@@ -70,7 +71,7 @@ export default Vue.extend({
         ></v-text-field>
         <div class="content-url--registration">
             У меня
-            <a @click="goToSignIn" >нет аккаунта</a>
+            <a @click="goToSignIn" >есть аккаунт </a>
         </div>
         <button class="button-auth"> 
             Войти
@@ -78,15 +79,14 @@ export default Vue.extend({
     </div>
 </template>
 <style lang="scss">
+     @import '~@/assets/styles/mixins.scss';
+
     .form {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-mix(flex);
       flex-direction: column;
 
       input {
           width: 300px !important;
-          font-family: 'Montserrat-Medium', 'sans-serif';
       }
       // задаем шрифт для всех блоков кроме h2
       & > *:not(.form__title) {
@@ -99,7 +99,7 @@ export default Vue.extend({
     .form__preview-text {
         width: 300px;
         text-align: center;
-        color: #B4B4B4;
+        color: #8b8b8b;
         font-size: 14px;
         margin-bottom: 10px;
     }
@@ -114,6 +114,7 @@ export default Vue.extend({
 
         a {
             color: rgba(23, 27, 148);
+            text-decoration: underline;
         }
     }
     .button-auth {

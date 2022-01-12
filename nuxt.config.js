@@ -19,6 +19,7 @@ export default {
   css: [
     '@/assets/styles/index.scss',
     '@/assets/styles/fonts.scss',
+    '@/assets/styles/mixins.scss',
     '@/assets/styles/svg.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

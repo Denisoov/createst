@@ -1,33 +1,7 @@
-<script lang="ts">
-import Vue from 'vue'
-
-import LoginForm from '@/components/login/LoginForm.vue'
-import SignInForm from '@/components/login/SignInForm.vue'
-
-import { CurrentForm } from '~/types/store/auth'
-
-export default Vue.extend({
-  components: {
-    LoginForm,
-    SignInForm
-  }
-})
-</script>
-
 <template>
   <v-app>
     <div class="layout">
-      <div class="wrapper-form">
-        <div class="side">
-            <img src="@/assets/images/logo.png" alt="creaTest">
-        </div>
-        <div class="side">
-          <component 
-            :is="'LoginForm'"
-            v-on="$listeners"
-          ></component>
-        </div>
-      </div>
+      <nuxt />
     </div>
   </v-app>
 </template>
@@ -43,27 +17,5 @@ export default Vue.extend({
       transparent 50%, 
       #171B94 50%, 
       #171B94);
-  }
-  .wrapper-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    min-width: 1200px;
-    box-shadow: 0 5px 70px rgb(0 0 0 / 8%);
-    border-radius: 30px;
-    background: linear-gradient(
-      270deg, 
-      transparent 50%, 
-      #2529B4 50%, 
-      #2529B4);
-
-    .side {
-      width: 50%;
-      height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   }
 </style>
