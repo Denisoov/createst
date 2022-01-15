@@ -48,7 +48,12 @@ export default Vue.extend({
   min-width: 1200px;
   box-shadow: 0 5px 70px rgb(0 0 0 / 8%);
   border-radius: 30px;
-  background: linear-gradient(270deg, transparent 50%, #2529b4 50%, #2529b4);
+  background: linear-gradient(
+    270deg,
+    transparent 50%,
+    $dark-blue 50%,
+    $dark-blue
+  );
 
   .side {
     width: 50%;
@@ -57,13 +62,13 @@ export default Vue.extend({
   }
 }
 .fade-enter-active {
-  transition: all 0.2s;
+  @include transition-easy(0.15s);
 }
 .fade-enter {
   opacity: 0;
 }
 .fade-leave-active {
   opacity: 0;
-  transition: all 0.2s;
+  @include transition-easy(0.15s);
 }
 </style>

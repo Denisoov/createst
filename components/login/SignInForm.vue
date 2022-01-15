@@ -35,9 +35,6 @@ export default Vue.extend({
   @include flex-mix(flex);
   flex-direction: column;
 
-  input {
-    width: 300px !important;
-  }
   // задаем шрифт для всех блоков кроме h2
   & > *:not(.form__title) {
     font-family: 'Montserrat-Medium', 'sans-serif';

@@ -179,7 +179,7 @@ export default Vue.extend({
 .form__preview-text {
   width: 300px;
   text-align: center;
-  color: #8b8b8b;
+  color: $light-gray;
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -196,11 +196,5 @@ export default Vue.extend({
     color: rgba(23, 27, 148);
     text-decoration: underline;
   }
-}
-.button-auth {
-  background: #2529b4;
-  color: #fff;
-  padding: 16px 90px 16px 90px;
-  border-radius: 5px;
 }
 </style>
