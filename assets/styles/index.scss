@@ -13,3 +13,17 @@ h2 {
 input {
     font-family: 'Montserrat-Medium', 'sans-serif';
 }
+svg {
+    &:hover {
+        cursor: pointer;
+    }
+}
+button {
+    &:focus {
+        outline: 0;
+    }
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

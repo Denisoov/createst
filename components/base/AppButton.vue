@@ -1,19 +1,22 @@
 <template>
-  <v-btn v-bind="$attrs" class="app-button" v-on="$listeners">
-    <slot />
-    <template #loader>
-      <slot name="loader" />
-    </template>
-  </v-btn>
+  <button v-bind="$attrs" class="app-button" v-on="$listeners">
+    {{ $attrs.title }}
+  </button>
 </template>
 <style lang="scss" scoped>
+.app-button {
+  background: #2529b4;
+  color: #fff;
+  padding: 16px 90px 16px 90px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.15s all ease-in-out;
 
-    @import '~@/assets/styles/colors.scss';
-    .app-button {
-        min-height: 40px;
-        padding: 0 10px;
-        color: $white;
-        // background-color: $primary;
-        box-shadow: 0 2px 10px rgba(215, 68, 0, 0.4);
-    }
+  &:active {
+    transition: 0.15s all ease-in-out;
+    transform: translate(0px, 3px);
+    -webkit-transform: translate(0px, 3px);
+    box-shadow: 0px 5px 0px 0px;
+  }
+}
 </style>

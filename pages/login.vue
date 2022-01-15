@@ -10,7 +10,7 @@ export default Vue.extend({
   layout: 'auth',
   components: {
     LoginForm,
-    SignInForm
+    SignInForm,
   },
   computed: {
     currentForm(): CurrentForm {
@@ -20,21 +20,21 @@ export default Vue.extend({
   methods: {
     changeCurrentForm(nextForm: CurrentForm): void {
       this.$store.dispatch('auth/changeCurrentForm', nextForm)
-    }
-  }
+    },
+  },
 })
 </script>
 
 <template>
   <div class="wrapper-form">
     <div class="side">
-        <img src="@/assets/images/logo.png" alt="creaTest">
+      <img src="@/assets/images/logo.png" alt="creaTest" />
     </div>
     <div class="side">
       <transition name="fade" mode="out-in">
-        <component 
-        :is="currentForm"
-        @changeCurrentForm="changeCurrentForm"
+        <component
+          :is="currentForm"
+          @changeCurrentForm="changeCurrentForm"
         ></component>
       </transition>
     </div>
@@ -42,34 +42,28 @@ export default Vue.extend({
 </template>
 
 <style lang="scss">
-  @import '~@/assets/styles/mixins.scss';
+.wrapper-form {
+  @include flex-mix(flex);
+  min-height: 80vh;
+  min-width: 1200px;
+  box-shadow: 0 5px 70px rgb(0 0 0 / 8%);
+  border-radius: 30px;
+  background: linear-gradient(270deg, transparent 50%, #2529b4 50%, #2529b4);
 
-  .wrapper-form {
-      @include flex-mix(flex);
-      min-height: 80vh;
-      min-width: 1200px;
-      box-shadow: 0 5px 70px rgb(0 0 0 / 8%);
-      border-radius: 30px;
-      background: linear-gradient(
-        270deg, 
-        transparent 50%, 
-        #2529B4 50%, 
-        #2529B4);
-
-      .side {
-        width: 50%;
-        height: 80vh;
-        @include flex-mix(flex);
-      }
-    }
-  .fade-enter-active {
-    transition: all 0.2s;
+  .side {
+    width: 50%;
+    height: 80vh;
+    @include flex-mix(flex);
   }
-  .fade-enter {
-    opacity: 0;
-  }
-  .fade-leave-active {
-    opacity: 0;
-    transition: all 0.2s;
-  }
+}
+.fade-enter-active {
+  transition: all 0.2s;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave-active {
+  opacity: 0;
+  transition: all 0.2s;
+}
 </style>

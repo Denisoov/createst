@@ -16,12 +16,15 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  css: [
-    '@/assets/styles/index.scss',
+  styleResources: {
+    scss: [
     '@/assets/styles/colors.scss',
     '@/assets/styles/fonts.scss',
-    '@/assets/styles/mixins.scss',
-    '@/assets/styles/svg.scss'],
+    '@/assets/styles/mixins.scss'
+    ],
+  },  
+  css: [
+    '@/assets/styles/index.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -42,6 +45,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
