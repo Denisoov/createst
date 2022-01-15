@@ -18,6 +18,7 @@ export default {
   },
   css: [
     '@/assets/styles/index.scss',
+    '@/assets/styles/colors.scss',
     '@/assets/styles/fonts.scss',
     '@/assets/styles/mixins.scss',
     '@/assets/styles/svg.scss'],

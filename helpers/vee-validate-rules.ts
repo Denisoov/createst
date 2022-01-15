@@ -2,6 +2,7 @@ import { ValidationRule } from 'vee-validate/dist/types/types'
 
 import { 
     max as maxRules, 
+    min as minRules,
     email as emailRules 
 } from 'vee-validate/dist/rules'
 
@@ -9,6 +10,13 @@ export const max = {
     ...maxRules,
     message: 'Превышено максимальное число символов'
 }
+
+export const min: ValidationRule = {
+    ...minRules,
+    message: (_value, argument) =>
+      `Строка должна состоять из ${argument['length']} и более символов`,
+    params: ['length'],
+  }
 
 export const email: ValidationRule = {
     ...emailRules,
