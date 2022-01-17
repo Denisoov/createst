@@ -64,6 +64,15 @@ export const actions: ActionTree<AuthState, FullState> = {
       commit('RESET_SIGN_IN_DATA', defaultState.signInForm)
     }
   },
+  async signIn({ commit, state }) {
+    try {
+      const { data } = await this.$axios.post('api/getToken')
+
+      console.log('data', data)
+    } catch (err) {
+      console.log('err', err)
+    }
+  },
 }
 
 export const getters: GetterTree<AuthState, FullState> = {
