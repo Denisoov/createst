@@ -21,7 +21,7 @@ jobs:
         node: [16]
 
     steps:
-      - uses: action/checkout@v1
+      - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 16.13.1
