@@ -1,20 +1,55 @@
 <script lang="ts">
 import Vue from 'vue'
+import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 
 import { CurrentForm } from '@/types/store/auth'
 
 import AppButton from '@/components/base/AppButton.vue'
 
+import { required } from '@/helpers/vee-validate-rules'
+
+extend('required', required)
+
 export default Vue.extend({
   components: {
+    ValidationObserver,
+    ValidationProvider,
     AppButton,
+  },
+  computed: {
+    username: {
+      get(): String {
+        return this.$store.state.auth.signInForm.username
+      },
+      set(value: String): void {
+        this.$store.commit('auth/SET_USERNAME_SIGNIN', value)
+      },
+    },
+    password: {
+      get(): String {
+        return this.$store.state.auth.signInForm.password
+      },
+      set(value: string): void {
+        this.$store.commit('auth/SET_PASSWORD_SIGNIN', value)
+      },
+    },
+    form(): Vue & { validate: () => boolean } {
+      return this.$refs.SignInForm as Vue & { validate: () => boolean }
+    },
   },
   methods: {
     goToLogIn(): void {
       this.$emit('changeCurrentForm', CurrentForm.LOG_IN)
     },
-    signIn(): void {
-      this.$store.dispatch('auth/signIn')
+    async signIn() {
+      const formObserver = await this.form.validate()
+
+      if (formObserver) {
+        await this.$store.dispatch('auth/signIn', {
+          email: this.username,
+          password: this.password,
+        })
+      }
     },
   },
 })
@@ -23,13 +58,46 @@ export default Vue.extend({
 <template>
   <div class="form">
     <h2 class="form__title">Вход в систему</h2>
-    <v-text-field class="input__text" placeholder="Логин"></v-text-field>
-    <v-text-field placeholder="Пароль" type="password"></v-text-field>
+    <validation-observer ref="SignInForm" v-slot="formSlotProps" tag="div">
+      <v-form class="form" :value="formSlotProps.valid" @submit.prevent>
+        <validation-provider
+          v-slot="{ errors }"
+          mode="eager"
+          :rules="'required'"
+          :placeholder="'Логин'"
+        >
+          <v-text-field
+            class="input__text"
+            v-model="username"
+            :error-messages="errors"
+            autocomplete="off"
+            placeholder="Логин"
+            type="text"
+          ></v-text-field>
+        </validation-provider>
+
+        <validation-provider
+          v-slot="{ errors }"
+          mode="eager"
+          :rules="'required'"
+          :placeholder="'Пароль'"
+        >
+          <v-text-field
+            class="input__text"
+            v-model="password"
+            :error-messages="errors"
+            autocomplete="off"
+            placeholder="Пароль"
+            type="password"
+          ></v-text-field>
+        </validation-provider>
+      </v-form>
+    </validation-observer>
     <div class="content-url--registration">
       У меня
       <a @click="goToLogIn">нет аккаунта</a>
     </div>
-    <app-button @click="signIn" title="Войти" />
+    <app-button @click="signIn()" title="Войти" />
   </div>
 </template>
 

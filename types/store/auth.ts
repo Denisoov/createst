@@ -15,6 +15,7 @@ export interface LoginForm {
 export interface SignInForm {
   username: String
   password: String
+  [key: string]: any
 }
 
 export interface AuthState {

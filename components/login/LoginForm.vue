@@ -19,6 +19,9 @@ export default Vue.extend({
     AppButton,
   },
   computed: {
+    form(): Vue & { validate: () => boolean } {
+      return this.$refs.LogInForm as Vue & { validate: () => boolean }
+    },
     secondNameValue: {
       get(): String {
         return this.$store.state.auth.loginForm.second_name
@@ -48,7 +51,7 @@ export default Vue.extend({
         return this.$store.state.auth.loginForm.username
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_USERNAME', value)
+        this.$store.commit('auth/SET_USERNAME_LOGIN', value)
       },
     },
     password: {
@@ -63,6 +66,13 @@ export default Vue.extend({
   methods: {
     goToSignIn(): void {
       this.$emit('changeCurrentForm', CurrentForm.SIGN_IN)
+    },
+    async logIn() {
+      const formObserver = await this.form.validate()
+
+      if (formObserver) {
+        alert('го регистрацию')
+      }
     },
   },
 })
@@ -156,7 +166,7 @@ export default Vue.extend({
       У меня
       <a @click="goToSignIn">есть аккаунт</a>
     </div>
-    <app-button title="Регистрация" />
+    <app-button @click="logIn" title="Регистрация" />
   </div>
 </template>
 
