@@ -1,29 +1,29 @@
-*  {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 h2 {
-    font-family: 'Montserrat-SemiBold', 'sans-serif';
-    text-align: center;
-    font-size: 28px;
-    color: #282828;
-    width: 300px;
+  font-family: 'Montserrat-SemiBold', 'sans-serif';
+  text-align: center;
+  font-size: 28px;
+  color: #282828;
+  width: 300px;
 }
 input {
-    font-family: 'Montserrat-Medium', 'sans-serif';
+  font-family: 'Montserrat-Medium', 'sans-serif';
 }
 svg {
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 button {
-    &:focus {
-        outline: 0;
-    }
-    &:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+  &:focus {
+    outline: 0;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
