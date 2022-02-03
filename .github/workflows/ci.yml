@@ -22,4 +22,4 @@ jobs:
 
     steps:
       - name: Print Hello Message
-      - run : echo "Hello World"
+        run: echo "Hello World"
