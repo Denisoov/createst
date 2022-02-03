@@ -21,8 +21,7 @@ jobs:
         node: [16]
 
     steps:
-      - name: Клонирование репозитория
-        run: 
+      - user: action/checkout@v1
+      
       - name: Установка пакетов
         run: npm install
-      - name: 
