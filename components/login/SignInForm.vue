@@ -13,6 +13,9 @@ export default Vue.extend({
     goToLogIn(): void {
       this.$emit('changeCurrentForm', CurrentForm.LOG_IN)
     },
+    signIn(): void {
+      this.$store.dispatch('auth/signIn')
+    },
   },
 })
 </script>
@@ -26,7 +29,7 @@ export default Vue.extend({
       У меня
       <a @click="goToLogIn">нет аккаунта</a>
     </div>
-    <app-button title="Войти" />
+    <app-button @click="signIn" title="Войти" />
   </div>
 </template>
 
