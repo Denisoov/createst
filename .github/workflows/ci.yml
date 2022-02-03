@@ -21,5 +21,8 @@ jobs:
         node: [16]
 
     steps:
-      - name: Print Hello Message
-        run: echo "Hello World"
+      - name: Клонирование репозитория
+        run: 
+      - name: Установка пакетов
+        run: npm install
+      - name: 
