@@ -12,7 +12,7 @@ on:
       - dev
 
 jobs:
-  ci:
+  build:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -21,7 +21,13 @@ jobs:
         node: [16]
 
     steps:
-      - user: action/checkout@v1
-      
+      - uses: action/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.1
       - name: Установка пакетов
         run: npm install
+
+      - name: Установка пакетов
+        run: npm run build
+      
