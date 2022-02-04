@@ -9,7 +9,7 @@ export default Vue.extend({
   },
   methods: {
     goToPage(link: String): void {
-      window.location.replace(link.toString())
+      this.$nuxt.$router.push(String(link))
     },
   },
 })
