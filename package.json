@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "dev:host": "nuxt --hostname 192.168.56.1 --timing=false",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

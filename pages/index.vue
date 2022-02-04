@@ -12,17 +12,17 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div>
+  <div class="content">
     <h2>Главное меню</h2>
-    <section class="wrapper">
+    <section class="wrapper-menu">
       <Menu />
     </section>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
-  height: 100%;
+.wrapper-menu {
+  height: 70vh;
   @include flex-mix(flex);
 }
 h2 {
