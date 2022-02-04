@@ -22,6 +22,9 @@ export default Vue.extend({
       this.$store.dispatch('auth/changeCurrentForm', nextForm)
     },
   },
+  beforeDestroy() {
+    this.$store.dispatch('auth/clearState')
+  },
 })
 </script>
 

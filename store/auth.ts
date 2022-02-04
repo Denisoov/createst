@@ -46,11 +46,18 @@ export const mutations: MutationTree<AuthState> = {
   SET_PATRONYMIC: (state, patronymic: String) => {
     state.loginForm.patronymic = patronymic
   },
-  SET_USERNAME: (state, username: String) => {
+  SET_USERNAME_LOGIN: (state, username: String) => {
     state.loginForm.username = username
   },
   SET_PASSWORD: (state, password: String) => {
     state.loginForm.password = password
+  },
+  // для формы авторизации
+  SET_USERNAME_SIGNIN: (state, username: String) => {
+    state.signInForm.username = username
+  },
+  SET_PASSWORD_SIGNIN: (state, password: String) => {
+    state.signInForm.password = password
   },
 }
 
@@ -64,9 +71,13 @@ export const actions: ActionTree<AuthState, FullState> = {
       commit('RESET_SIGN_IN_DATA', defaultState.signInForm)
     }
   },
-  async signIn({ commit, state }) {
+  clearState({ commit }) {
+    commit('RESET_LOGIN_DATA')
+    commit('RESET_SIGN_IN_DATA')
+  },
+  async signIn({ commit, state }, dataSignIn) {
     try {
-      const { data } = await this.$axios.post('api/getToken')
+      const { data } = await this.$axios.post('api/getToken', dataSignIn)
 
       console.log('data', data)
     } catch (err) {
