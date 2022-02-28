@@ -3,7 +3,7 @@ import Vue from 'vue'
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 import { min, max, email, required } from '@/helpers/vee-validate-rules'
 
-import { CurrentForm } from '@/types/store/auth'
+import { CurrentForm } from '@/types/store/login'
 
 import AppButton from '@/components/base/AppButton.vue'
 
@@ -24,42 +24,42 @@ export default Vue.extend({
     },
     secondNameValue: {
       get(): String {
-        return this.$store.state.auth.loginForm.second_name
+        return this.$store.state.login.loginForm.second_name
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_SECOND_NAME', value)
+        this.$store.commit('login/SET_SECOND_NAME', value)
       },
     },
     firstNameValue: {
       get(): String {
-        return this.$store.state.auth.loginForm.first_name
+        return this.$store.state.login.loginForm.first_name
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_FIRST_NAME', value)
+        this.$store.commit('login/SET_FIRST_NAME', value)
       },
     },
     patronymic: {
       get(): String {
-        return this.$store.state.auth.loginForm.patronymic
+        return this.$store.state.login.loginForm.patronymic
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_PATRONYMIC', value)
+        this.$store.commit('login/SET_PATRONYMIC', value)
       },
     },
     username: {
       get(): String {
-        return this.$store.state.auth.loginForm.username
+        return this.$store.state.login.loginForm.username
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_USERNAME_LOGIN', value)
+        this.$store.commit('login/SET_USERNAME_LOGIN', value)
       },
     },
     password: {
       get(): String {
-        return this.$store.state.auth.loginForm.password
+        return this.$store.state.login.loginForm.password
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_PASSWORD', value)
+        this.$store.commit('login/SET_PASSWORD', value)
       },
     },
   },
