@@ -2,6 +2,7 @@ import { ActionTree, MutationTree, GetterTree } from 'vuex'
 
 import { CurrentForm, AuthState } from '@/types/store/login'
 import { FullState } from '~/types'
+import api from "~/plugins/apiFactory";
 
 const defaultState: AuthState = {
   currentForm: CurrentForm.SIGN_IN,
@@ -76,14 +77,13 @@ export const actions: ActionTree<AuthState, FullState> = {
     commit('RESET_SIGN_IN_DATA')
   },
   async signIn({ commit, state }, dataSignIn) {
-    // try {
-    // const response = await this.$auth.loginWith('local', {
-    // data: dataSignIn,
-    // })
-    // console.log('data', response)
-    // } catch (err) {
-    // console.log('err', err)
-    // }
+    try {
+      const token = this.$apiFactory.auth.signIn(dataSignIn)
+      console.log('token', token)
+    }
+    catch (err) {
+      console.log(err)
+    }
   },
 }
 

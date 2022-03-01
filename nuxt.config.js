@@ -16,20 +16,23 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  router: {
+    middleware: ['authRedirect']
+  },
   styleResources: {
     scss: [
     '@/assets/styles/colors.scss',
     '@/assets/styles/fonts.scss',
     '@/assets/styles/mixins.scss'
     ],
-  },  
+  },
   css: [
     '@/assets/styles/index.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/axiosInit', mode: 'all' },
-    { src: '@/plugins/servicesApi', mode: 'all' },
+    { src: '@/plugins/apiFactory', mode: 'all' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -47,35 +50,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
     '@nuxtjs/style-resources',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    auth: {
-      strategies: {
-        local: {
-          token: {
-            property: "token",
-            global: true
-            // required: true,
-            // type: 'Bearer'
-          },
-          user: {
-            property: "user",
-            autoFetch: false
-          },
-          endpoints: {
-            login: { url: "/api/login", method: "post" },
-            logout: { url: "/api/auth/logout", method: "post" },
-            user: { url: "/api/auth/user", method: "get" }
-          }
-        }
-      }
-    }
   },
-
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     treeShake: true,
@@ -86,5 +66,5 @@ export default {
   build: {
     transpile: ['vee-validate/dist/rules'],
   }
-  
+
 }
