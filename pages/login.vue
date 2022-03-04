@@ -4,7 +4,7 @@ import Vue from 'vue'
 import LoginForm from '@/components/login/LoginForm.vue'
 import SignInForm from '@/components/login/SignInForm.vue'
 
-import { CurrentForm } from '@/types/store/auth'
+import { CurrentForm } from '@/types/store/login'
 
 export default Vue.extend({
   layout: 'auth',
@@ -12,18 +12,26 @@ export default Vue.extend({
     LoginForm,
     SignInForm,
   },
+  async fetch() {
+    if (this.isAuthorized) {
+      window.location.replace('/')
+    }
+  },
   computed: {
     currentForm(): CurrentForm {
-      return this.$store.getters['auth/currentForm']
+      return this.$store.getters['login/currentForm']
     },
+    isAuthorized(): string {
+      return this.$store.state.user.token
+    }
   },
   methods: {
     changeCurrentForm(nextForm: CurrentForm): void {
-      this.$store.dispatch('auth/changeCurrentForm', nextForm)
+      this.$store.dispatch('login/changeCurrentForm', nextForm)
     },
   },
   beforeDestroy() {
-    this.$store.dispatch('auth/clearState')
+    this.$store.dispatch('login/clearState')
   },
 })
 </script>

@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 
-import { CurrentForm } from '@/types/store/auth'
+import { CurrentForm } from '@/types/store/login'
 
 import AppButton from '@/components/base/AppButton.vue'
 
@@ -19,18 +19,18 @@ export default Vue.extend({
   computed: {
     username: {
       get(): String {
-        return this.$store.state.auth.signInForm.username
+        return this.$store.state.login.signInForm.username
       },
       set(value: String): void {
-        this.$store.commit('auth/SET_USERNAME_SIGNIN', value)
+        this.$store.commit('login/SET_USERNAME_SIGNIN', value)
       },
     },
     password: {
       get(): String {
-        return this.$store.state.auth.signInForm.password
+        return this.$store.state.login.signInForm.password
       },
       set(value: string): void {
-        this.$store.commit('auth/SET_PASSWORD_SIGNIN', value)
+        this.$store.commit('login/SET_PASSWORD_SIGNIN', value)
       },
     },
     form(): Vue & { validate: () => boolean } {
@@ -45,10 +45,12 @@ export default Vue.extend({
       const formObserver = await this.form.validate()
 
       if (formObserver) {
-        await this.$store.dispatch('auth/signIn', {
+        await this.$store.dispatch('user/signIn', {
           email: this.username,
           password: this.password,
         })
+
+        await this.$router.push('/')
       }
     },
   },

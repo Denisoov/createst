@@ -16,20 +16,23 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  router: {
+    middleware: ['authRedirect']
+  },
   styleResources: {
     scss: [
     '@/assets/styles/colors.scss',
     '@/assets/styles/fonts.scss',
     '@/assets/styles/mixins.scss'
     ],
-  },  
+  },
   css: [
     '@/assets/styles/index.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/axiosInit', mode: 'all' },
-    { src: '@/plugins/servicesApi', mode: 'all' },
+    { src: '@/plugins/apiFactory', mode: 'all' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,14 +48,14 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    'cookie-universal-nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
-
+  axios: {
+  },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     treeShake: true,
@@ -63,5 +66,5 @@ export default {
   build: {
     transpile: ['vee-validate/dist/rules'],
   }
-  
+
 }
