@@ -12,10 +12,18 @@ export default Vue.extend({
     LoginForm,
     SignInForm,
   },
+  async fetch() {
+    if (this.isAuthorized) {
+      window.location.replace('/')
+    }
+  },
   computed: {
     currentForm(): CurrentForm {
       return this.$store.getters['login/currentForm']
     },
+    isAuthorized(): string {
+      return this.$store.state.user.token
+    }
   },
   methods: {
     changeCurrentForm(nextForm: CurrentForm): void {

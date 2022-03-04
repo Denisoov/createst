@@ -1,10 +1,10 @@
 import { Middleware } from '@nuxt/types'
 
-const authRedirect: Middleware = ({ store, redirect, route }) => {
+const authRedirect: Middleware = ({ store, redirect }) => {
   const token = store.state.user.token
 
   if (!token) {
-    redirect('/login')
+    redirect({name: 'login'})
   }
 }
 

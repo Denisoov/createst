@@ -12,6 +12,7 @@ declare module 'vuex/types/index' {
 
 const apiFactory: Plugin = ({ $axios }, inject): void => {
   const API_URL = 'http://btz:8080/'
+
   $axios.setBaseURL(API_URL)
 
   const apiFactories = {

@@ -14,4 +14,24 @@ const defaultState: UserState = {
 
 export const state = (): UserState => defaultState
 
-export const mutations: MutationTree<UserState> = {}
+export const mutations: MutationTree<UserState> = {
+  SET_ENTRY_TOKEN: (state, token: String) => {
+    state.token = token
+  },
+}
+
+export const actions: ActionTree<UserState, FullState> = {
+  async signIn({ commit, state }, dataSignIn) {
+    try {
+      const token = await this.$apiFactory.auth.signIn(dataSignIn)
+
+      this.$cookies.set('token', token)
+
+      commit('SET_ENTRY_TOKEN', token.data.token)
+    }
+    catch (err) {
+      console.log(err)
+    }
+  },
+}
+

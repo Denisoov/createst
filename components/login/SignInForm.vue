@@ -45,10 +45,12 @@ export default Vue.extend({
       const formObserver = await this.form.validate()
 
       if (formObserver) {
-        await this.$store.dispatch('login/signIn', {
+        await this.$store.dispatch('user/signIn', {
           email: this.username,
           password: this.password,
         })
+
+        await this.$router.push('/')
       }
     },
   },

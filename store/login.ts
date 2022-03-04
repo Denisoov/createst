@@ -76,15 +76,6 @@ export const actions: ActionTree<AuthState, FullState> = {
     commit('RESET_LOGIN_DATA')
     commit('RESET_SIGN_IN_DATA')
   },
-  async signIn({ commit, state }, dataSignIn) {
-    try {
-      const token = this.$apiFactory.auth.signIn(dataSignIn)
-      console.log('token', token)
-    }
-    catch (err) {
-      console.log(err)
-    }
-  },
 }
 
 export const getters: GetterTree<AuthState, FullState> = {
